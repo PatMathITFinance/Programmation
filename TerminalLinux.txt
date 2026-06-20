@@ -1,0 +1,181 @@
+## HELP ##
+
+man commande     # affiche le manuel d’une commande
+
+## Navigation ##
+
+pwd             # où suis-je ? affiche le repertoire courant
+ls              # liste fichiers
+ls -l           # format détaillé
+ls -la          # inclut les fichiers cachés
+cd dossier	# va dans le sous-dossier qui s'appelle dossier
+cd ..		# remonte d'un niveau
+cd ~		# va dans le home
+cd		# va dans le home
+cd - 		# revenir au repertoire precedent
+
+## Manipulation de fichiers ##
+
+touch fichier        # crée un fichier vide (ou met à jour sa date si déjà existant)
+mkdir dossier        # crée un nouveau dossier
+rm fichier           # supprime un fichier
+rm -r dossier        # supprime un dossier et tout son contenu (récursif)
+cp source dest       # copie un fichier vers une destination (fichier ou dossier)
+cp -r dir1 dir2      # copie un dossier entier avec son contenu
+mv ancien nouveau    # renomme ou déplace un fichier/dossier
+mv fichier dossier/  # déplace un fichier dans un dossier
+
+## Affichage ##
+
+cat fichier            # affiche tout le contenu du fichier d’un coup
+less fichier           # affiche le fichier page par page (navigation avec flèches, q pour quitter)
+head fichier           # affiche les 10 premières lignes du fichier
+head -n 20 fichier     # affiche les 20 premières lignes (ou N lignes)
+tail fichier           # affiche les 10 dernières lignes du fichier
+tail -n 20 fichier     # affiche les 20 dernières lignes (ou N lignes)
+tail -f fichier        # affiche les dernières lignes du fichier et continue à afficher en temps réel les nouvelles lignes ajoutées
+CTRL + C	       # pour sortir de l'execution d'un programme
+CTRL + C   	       # interrompt un programme en cours
+
+## Recherche ##
+
+find . -name "*.c"     # cherche tous les fichiers .c à partir du répertoire courant (récursif)
+grep "main" fichier.c  # cherche les lignes contenant "main" dans un fichier
+grep -r "printf" .     # cherche "printf" dans tous les fichiers du dossier courant et sous-dossiers (récursif)
+grep -rl "texte" .     # cherche récursivement "texte" et affiche uniquement les noms des fichiers qui contiennent ce texte
+which gcc              # affiche le chemin de l’exécutable gcc utilisé par le système
+
+## Permissions ##
+
+Chaque fichier a 3 types de droits :
+
+r = read (lecture)
+w = write (écriture)
+x = execute (exécution)
+
+Et ces droits s’appliquent à 3 catégories :
+
+u = user (propriétaire)
+g = group
+o = others (les autres)
+
+Exemples:
+chmod 755 fichier
+chmod 644 fichier
+chmod +x fichier   # rend un fichier exécutable
+
+Chaque chiffre représente un groupe :
+| Chiffre | Signification |
+| ------- | ------------- |
+| 7       | rwx           |
+| 6       | rw-           |
+| 5       | r-x           |
+| 4       | r--           |
+| 0       | ---           |
+
+
+Dans le résultat de 'ls -l' le premier charactère est d pour un repertoire, - pour un fichier, l pour un lien symbolique
+
+par exemple, 
+-rwxr-xr-x
+veut dire que pour le user
+   propriétaire : rwx
+   groupe : r-x
+   autres : r-x
+
+## Archives/ZIP ##
+
+tar -cf archive.tar dossier   # crée une archive .tar à partir d’un dossier
+tar -xvf archive.tar          # extrait le contenu d’une archive .tar
+
+## Redirections ##
+
+commande > fichier           # envoie le résultat dans un fichier, écrase le contenu si existant
+commande >> fichier	     # ajoute à la fin du fichier sans effacer le contenu existant
+commande < fichier	     # le fichier devient l'entrée standard (stdin)
+
+Exemples :
+
+ls > liste.txt
+cat liste.txt
+
+## Pipes ##
+
+Très important :
+commande1 | commande2
+
+Exemples :
+ls | wc -l
+cat fichier | grep main
+
+## Comptage ##
+
+wc fichier
+
+wc -l fichier
+wc -c fichier
+ls | grep ".c" | wc -l  # compte tous les fichiers .c
+
+## Processus ##
+
+ps              # affiche la liste des processus en cours (snapshot à l’instant T)
+top             # affiche les processus en temps réel (CPU, RAM, tri dynamique) - q pour quitter
+kill -9 PID     # envoie un signal à un processus (PID = identifiant du processus) - pour forcer l'arrêt d'un binaire
+
+
+## Quelques exemples ##
+
+grep -i "text" fichier       # ignore la casse (TEXT = text)
+find . -type f -name "*.c"   # plus précis (fichiers uniquement)
+
+Afficher uniquement les .c :
+ls *.c
+
+Compter les lignes :
+wc -l fichier.c
+
+Chercher "main" :
+grep main fichier.c
+
+Trouver tous les .c :
+find . -name "*.c"
+
+Compiler :
+cc -Wall -Wextra -Werror *.c
+
+Lancer :
+./a.out
+
+## pour aller plus loin ##
+
+xargs, sort, tr, cut, rev, awk, sed
+
+find . -name "*.c"         # cherche tous les fichiers .c depuis le dossier courant
+grep "main" fichier.c      # cherche "main" dans un fichier
+grep -r "printf" .         # cherche récursivement dans tous les fichiers
+grep -rl "printf" .        # affiche seulement les fichiers concernés
+find . -name "*.c" | xargs grep "main"
+
+sort fichier.txt           # trie les lignes
+sort -r fichier.txt        # tri inversé
+sort -n fichier.txt        # tri numérique
+
+tr 'a-z' 'A-Z'            # majuscules
+tr -d 'a'                 # supprime les 'a'
+
+cut -d ':' -f 1 fichier   # découpe sur ":" et prend colonne 1
+
+rev fichier               # inverse chaque ligne
+
+awk '{print $1}' fichier  # affiche la première colonne
+
+sed 's/old/new/' fichier     # remplace old par new (1ère occurrence)
+sed 's/old/new/g' fichier    # remplace toutes les occurrences
+
+grep -r "printf" . | wc -l   # compter occurrences
+
+sort fichier.txt | uniq
+cut -d ' ' -f 1 fichier.txt
+cat fichier.txt | tr 'a-z' 'A-Z'
+
+

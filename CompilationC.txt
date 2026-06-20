@@ -1,0 +1,25 @@
+## Compilation C ##
+
+gcc main.c
+		# compile le fichier main.c
+		# génère un exécutable par défaut : a.out
+
+gcc main.c -Wall -Wextra -Werror
+		# compile avec warnings activés :
+		# -Wall    = warnings de base
+		# -Wextra  = warnings supplémentaires
+		# -Werror  = transforme les warnings en erreurs
+
+
+gcc *.c -Wall -Wextra -Werror
+		# compile tous les fichiers .c du dossier
+
+par défaut le binaire est a.out et pour l'éxécuter
+./a.out
+
+gcc main.c -o test
+va génére le binaire test
+
+## alternative ##
+
+cc -Wall -Wextra -Werror fichier.c

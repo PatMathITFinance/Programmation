@@ -1,0 +1,95 @@
+## FLOW PISCINE (ULTRA IMPORTANT) ##
+git clone url
+git status
+git add .
+git commit -m "message"
+git push
+
+
+## INIT / CONFIG ##
+
+git init 				 # initialise un dépôt git dans le dossier courant
+git config --global user.name "TonNom"   # configure ton identité git (une fois)
+git config --global user.email "ton@email.com"
+
+## STATUS ##
+
+git status 	# montre les fichiers modifiés / non suivis / prêts à commit
+
+## Ajout / Staging ##
+
+git add fichier.c 	# ajoute un fichier à la zone de staging
+git add .		# ajoute tous les fichiers modifies
+
+
+## COMMIT ##
+
+git commit -m "message" # enregistre un snapshot du projet
+
+message, c'est juste pour toi de savoir à quoi correspond ton commit
+
+exemple :
+
+git commit -m "fix ft_strlen"
+
+git diff		# montre les modifications non commitées
+
+## HISTORIQUE ##
+
+git log 		# affiche l’historique des commits
+
+Version compacte :
+git log --oneline	# affiche ce qui est important
+
+## RETOUR EN ARRIÈRE ##
+
+annuler modifications non commit
+git checkout -- fichier.c 	# remet le fichier comme au dernier commit
+git restore fichier.c		# plus modern
+
+enlever du staging
+git reset fichier.c		# retire du git add
+				# retire du staging
+
+revenir à un commit
+git reset --hard <commit_id>	# revient à un état précédent (DANGEREUX) A faire avec precaution
+git reset --soft <commit_id>
+
+## REPO DISTANT (GitHub / intra 42) ##
+
+cloner
+git clone url			# copie un repo distant
+
+envoyer (push)
+git push			# envoie tes commits vers le remote
+git push origin main   		# parfois nécessaire
+
+récupérer (pull)
+git pull			# récupère les modifications du remote
+
+## Pour aller plus loin ##
+
+BRANCHES (utile mais pas toujours piscine)
+git branch			# liste les branches
+git checkout -b feature		# crée et change de branche
+git checkout main		# change de branche
+
+## c’est LE cycle Classique ##
+
+ERREURS CLASSIQUES
+❌ oublier git add → commit vide
+❌ mauvais message commit → perte de clarté
+❌ git reset --hard sans réfléchir → perte de travail
+❌ ne pas vérifier git status → 80% des bugs Git
+
+## MÉMO SIMPLE ##
+
+| Action      | Commande   |
+| ----------- | ---------- |
+| voir état   | git status |
+| ajouter     | git add    |
+| sauvegarder | git commit |
+| envoyer     | git push   |
+| récupérer   | git pull   |
+
+

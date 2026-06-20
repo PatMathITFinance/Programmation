@@ -1,0 +1,48 @@
+Vi (minimum vital)
+
+vi fichier.c         # ouvre ou crée un fichier dans l’éditeur vi
+Esc + i              # passer en mode insertion (écrire du texte)
+Esc                  # revenir en mode commande (mode normal)
+:w                   # sauvegarder le fichier (write)
+:q!                  # quitter si aucun changement, ou quitter sans sauver
+:x!                  # sauvegarder et quitter
+
+h j k l        # gauche, bas, haut, droite (navigation sans souris) - marche aussi avec les flèches
+0              # début de ligne
+$              # fin de ligne
+
+dd             # supprime la ligne entière
+dw             # supprime un mot
+2dd	       # supprime 2 lignes
+ndd	       # supprime n lignes
+
+yy             # copie (yank) la ligne
+2yy	       # copie 2 lignes
+nyy	       # copie n lignes
+p              # colle après le curseur
+P              # colle avant le curseur
+
+u              # annule la dernière action
+Ctrl + r       # rétablit (redo)
+
+/texte         # cherche "texte" vers le bas
+n              # prochaine occurrence
+N              # occurrence précédente
+
+:s/ancien/nouveau/   # remplace la première occurrence de la ligne
+:s/ancien/nouveau/g  # remplace toutes les occurrences de la ligne
+:%s/ancien/nouveau/g # remplace partout dans le fichier
+
+i              # insertion avant curseur
+a              # insertion après curseur
+o              # nouvelle ligne en dessous
+O              # nouvelle ligne au-dessus
+
+:set number        # affiche les numéros de ligne
+:set nonumber      # enlève les numéros
+
+
+
+
+
+
