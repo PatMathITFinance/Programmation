@@ -17,6 +17,8 @@ cd - 		# revenir au repertoire precedent
 ## Manipulation de fichiers ##
 
 touch fichier        # crée un fichier vide (ou met à jour sa date si déjà existant)
+touch -t 202412250110 file # change la date du fichier file
+stat file 		   # donne les infos dont le date du fichier file
 mkdir dossier        # crée un nouveau dossier
 rm fichier           # supprime un fichier
 rm -r dossier        # supprime un dossier et tout son contenu (récursif)
@@ -87,6 +89,7 @@ veut dire que pour le user
 
 tar -cf archive.tar dossier   # crée une archive .tar à partir d’un dossier
 tar -xvf archive.tar          # extrait le contenu d’une archive .tar
+tar -tf archive.tar	      # pour voir le contenu du tar
 
 ## Redirections ##
 

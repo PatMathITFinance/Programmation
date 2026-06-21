@@ -20,6 +20,9 @@ par défaut le binaire est a.out et pour l'éxécuter
 gcc main.c -o test
 va génére le binaire test
 
+compile et execute
+gcc -Wall -Wextra -Werror main.c -o test && ./test
+
 ## alternative ##
 
 cc -Wall -Wextra -Werror fichier.c
